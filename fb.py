@@ -46,7 +46,6 @@ banner = '''
 \033[36;1mCreated By\033[31;1m :\033[32;1m Lore Dave P. \033[32;1m[\033[37;1mL0R3X AI\033[32;1m]
 ------------------------------------------
 '''
-
 def ceknet():
     try:
         os.system('clear')
