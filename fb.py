@@ -35,7 +35,7 @@ banner = '\n\033[31;1m____ ____ ____ ____ ___  ____ ____ _  _\n|___ |__| |    |_
 def ceknet():
     try:
         os.system('reset')
-        print (internet)
+        print(internet)
         print '\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mMeriksa Koneksi Internet'
         time.sleep(2)
         toolbar_width = 25
