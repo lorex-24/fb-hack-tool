@@ -27,13 +27,6 @@ br.addheaders = [('User-Agent', 'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U
 
 internet = '''
 \x1b[33;1m
-     ╭━━━━━━━━━◢◤━━━━━━━━━╮
-     ┃ ╭━━━━━━━┳━━━━━━━╮ ┃
-     ┃ ┃ ┳━╮   ┃ ╭━┳━╮ ┃ ┃
-     ┃ ┗━┻━╯   ┃ ┗━┻━┛ ┃ ┃
-     ┃           ┗━━━━━┛ ┃
-     ┣━━━━━━━━━━━━━━━━━━━┫
-     ╰━━━━━━━━━━━━━━━━━━━╯
      𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗨𝘀𝗲𝗿!
 '''
 banner = '''
@@ -50,7 +43,7 @@ def ceknet():
     try:
         os.system('clear')
         print(internet)
-        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1fetching data files from facebook...')
+        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mfetching data files from facebook...')
         time.sleep(2)
         toolbar_width = 25
         sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
@@ -89,7 +82,7 @@ def start():
         total = total.readlines()
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
-        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1m \033[36;1m:\033[32;1m ' + str(len(total)))
+        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mGenerated Data \033[36;1m:\033[32;1m ' + str(len(total)))
         time.sleep(3.0)
         print()
         sandi = open(passw, 'r')
