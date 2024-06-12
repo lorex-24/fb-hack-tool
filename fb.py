@@ -75,7 +75,7 @@ def start():
         os.system('clear')
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
-        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Generate Password   \033[31;1m:\033[32;1m ')
+        passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1mGet Password \033[31;1m:\033[32;1m ')
         total = open(passw, 'r')
         total = total.readlines()
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
