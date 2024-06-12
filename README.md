@@ -11,7 +11,7 @@ $ python fb.py
 ```
 # Use <a href="https://f-droid.org/en/packages/com.termux/" target="_blank">termux</a> for android
 
-# Powerd By:
+# Powered By:
 
 ██╗░░░░░░█████╗░██████╗░███████╗██╗░░██╗  ░█████╗░██╗
 ██║░░░░░██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝  ██╔══██╗██║
