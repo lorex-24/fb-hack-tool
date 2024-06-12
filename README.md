@@ -1,6 +1,6 @@
 # Installation Guide
 ```
-$ pkg update && pkg upgrade
+$ pkg upgrade
 $ pkg install git
 $ pkg install python
 $ pip install mechanize
