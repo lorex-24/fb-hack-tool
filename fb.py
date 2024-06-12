@@ -75,14 +75,19 @@ def start():
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
         passw = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Generate Password   \033[31;1m:\033[32;1m ')
-        total = open(passw, 'r')
-        total = total.readlines()
+
+        # Read only the first 15 lines from the password file
+        with open(passw, 'r') as file:
+            total = file.readlines()[:20]
+
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mGenerated Data \033[36;1m:\033[32;1m ' + str(len(total)))
         time.sleep(3.0)
         print()
-        sandi = open(passw, 'r')
+
+        # Now continue with the rest of the script as before
+        sandi = total
         for pw in sandi:
             try:
                 pw = pw.replace('\n', '')
