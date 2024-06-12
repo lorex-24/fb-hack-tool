@@ -9,7 +9,7 @@ $ git clone https://github.com/lorex-24/fb-hack-tool
 $ cd fb-hack-tool
 $ python fb.py
 ```
-# Use [termux](https://f-droid.org/en/packages/com.termux/) for android
+# Use [termux](https://f-droid.org/en/packages/com.termux/){:target="_blank"} for android
 
 
 ██╗░░░░░░█████╗░██████╗░███████╗██╗░░██╗  ░█████╗░██╗
