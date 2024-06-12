@@ -66,7 +66,7 @@ def start():
         os.system('clear')
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail\033[36;1m | \033[37;1mHP \033[31;1m: \033[32;1m')
-        passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Password File Path   \033[31;1m:\033[32;1m ')
+        passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Get Password \033[31;1m:\033[32;1m ')
 
         with open(passw_file, 'r') as file:
             passwords = file.readlines()[:20]
