@@ -41,15 +41,24 @@ def fetch_facebook_data():
 
         # Simulate progress bar
         toolbar_width = 25
-        sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
+        sys.stdout.write('[=] Getting Password... ')
         sys.stdout.flush()
+
+        # Move to a new line for the progress bar
+        sys.stdout.write('\n')
+        sys.stdout.flush()
+
+        # Progress bar
         for _ in range(toolbar_width):
-            sys.stdout.write('\r')
-            sys.stdout.flush()
             sys.stdout.write('\033[37;1m[')
             sys.stdout.write('\033[36;1m#\033[37;1m' * (_ + 1))
             sys.stdout.flush()
             time.sleep(5.0 / 100)
+            sys.stdout.write('\r')
+
+        sys.stdout.write('\033[37;1m[')
+        sys.stdout.write('\033[36;1m#\033[37;1m' * toolbar_width)
+        sys.stdout.flush()
 
         # Check internet connection by making a request to Facebook
         response = requests.get('http://facebook.com')
@@ -81,15 +90,14 @@ def start():
         for pw in passwords:
             pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
             try:
-                # Prompt indicating retrieving password
+                # Prompt indicating getting password
                 print("\033[34;1m[\033[37;1m=\033[34;1m] \033[37;1mGetting Password...")
-                sys.stdout.write('[%s]' % ('-\033[37;1m' * toolbar_width))
+
+                # Progress bar
+                sys.stdout.write('\033[37;1m[')
                 sys.stdout.flush()
                 for _ in range(toolbar_width):
-                    sys.stdout.write('\r')
-                    sys.stdout.flush()
-                    sys.stdout.write('\033[37;1m[')
-                    sys.stdout.write('\033[36;1m#\033[37;1m' * (_ + 1))
+                    sys.stdout.write('\033[36;1m#\033[37;1m')
                     sys.stdout.flush()
                     time.sleep(5.0 / 100)
 
