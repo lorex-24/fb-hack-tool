@@ -35,6 +35,8 @@ banner = '''
 
 def fetch_facebook_data():
     try:
+        os.system('clear')  # Clear the screen
+        print(banner)
         print(internet)
         print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
         time.sleep(2)
@@ -46,7 +48,7 @@ def fetch_facebook_data():
             sys.stdout.write('#')
             sys.stdout.flush()
             time.sleep(0.1)
-        sys.stdout.write(']')
+        sys.stdout.write(']\n')
         sys.stdout.flush()
 
         # Check internet connection by making a request to Facebook
@@ -61,7 +63,7 @@ def fetch_facebook_data():
 
 def start():
     try:
-        os.system('clear')
+        os.system('clear')  # Clear the screen
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail \033[36;1m: \033[32;1m')
         passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Get Password \033[31;1m:\033[32;1m ')
