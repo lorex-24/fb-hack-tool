@@ -56,7 +56,7 @@ def fetch_facebook_data():
         
         response = requests.get('http://facebook.com')
         response.raise_for_status()  
-        print('\n\033[32;1m[+] \033[37;1mloading main page... ')
+        print('\n\033[32;1m[#] \033[37;1mloading main page... ')
         time.sleep(2.0)
     except (ConnectionError, requests.exceptions.RequestException) as e:
         print('\n\033[31;1m[!] \033[37;1mNo Connection')
