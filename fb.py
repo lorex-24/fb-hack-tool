@@ -40,7 +40,6 @@ def fetch_facebook_data():
         print(internet)
         print('\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
         
-       
         toolbar_width = 25
         for _ in range(toolbar_width + 1):
             sys.stdout.write('\r')
@@ -53,7 +52,6 @@ def fetch_facebook_data():
 
         print()  
 
-        
         response = requests.get('http://facebook.com')
         response.raise_for_status()  
         print('\n\033[32;1m[#] \033[37;1mloading main page... ')
