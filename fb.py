@@ -40,7 +40,7 @@ def fetch_facebook_data():
         time.sleep(2)
 
         # Simulate progress bar
-        toolbar_width = 25  # Define toolbar_width here
+        toolbar_width = 25
         sys.stdout.write('[=] Getting Password... ')
         sys.stdout.flush()
 
@@ -86,7 +86,8 @@ def start():
         time.sleep(3.0)
         print()
 
-        toolbar_width = 25  # Define toolbar_width here
+        print('[=] Getting Password --> (passwords from {})'.format(passw_file))
+
         password_found = False
         for pw in passwords:
             pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
