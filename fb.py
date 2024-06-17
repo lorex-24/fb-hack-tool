@@ -41,7 +41,7 @@ def fetch_facebook_data():
 
         # Simulate progress bar
         toolbar_width = 25
-        sys.stdout.write('[=] Getting Password... ')
+        sys.stdout.write('Please wait...')
         sys.stdout.flush()
 
         # Move to a new line for the progress bar
