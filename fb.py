@@ -71,7 +71,7 @@ def start():
         passw_file = input('\033[34;1m[\033[37;1m~\033[34;1m]\033[37;1m Get Password \033[31;1m:\033[32;1m ')
 
         with open(passw_file, 'r') as file:
-            passwords = file.readlines()[:20]
+            passwords = file.readlines()[:25]
 
         print('\033[34;1m[\033[37;1m^\033[34;1m] \033[37;1mTarget\033[36;1m :\033[32;1m ' + email)
         time.sleep(3.0)
