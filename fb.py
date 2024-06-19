@@ -115,13 +115,20 @@ def start():
                 print(e)  
                 sys.exit()
 
-        if not password_found:
+        if password_found:
+            retrieve_another_account = input("Hack another account? (Press Y-Yes/N-No): ")
+            if retrieve_another_account.lower() == 'y':
+                start()
+            else:
+                sys.exit()
+
+        else:
             print("\n\n\033[33;1m[+] \033[37;1mPASSWORD NOT FOUND")
             print("\033[33;1m[+] \033[37;1mUsername \033[32;1m: \033[35;1m" + email)
             print("\033[33;1m[+] \033[37;1mPassword \033[32;1m: \033[35;1mnull")
             print("\033[33;1m[+] \033[37;1mStatus   \033[32;1m: \033[33;1mProtected by two-factor authentication")
             print("\033[33;1m[=] \033[37;1mProgram Finish")
-            retrieve_another_account = input("Hack another account (Y/N): ")
+            retrieve_another_account = input("Hack another account (Press Y-Yes/N-No): ")
             if retrieve_another_account.lower() == 'y':
                 start()
             else:
