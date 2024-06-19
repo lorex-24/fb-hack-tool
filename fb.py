@@ -116,7 +116,7 @@ def start():
                 sys.exit()
 
         if password_found:
-            retrieve_another_account = input("Hack another account? (Press Y-Yes/N-No): ")
+            retrieve_another_account = input("\n\nHack another account? (Press Y-Yes/N-No): ")
             if retrieve_another_account.lower() == 'y':
                 start()
             else:
