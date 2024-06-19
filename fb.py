@@ -128,7 +128,7 @@ def start():
             print("\033[33;1m[+] \033[37;1mPassword \033[32;1m: \033[35;1mnull")
             print("\033[33;1m[+] \033[37;1mStatus   \033[32;1m: \033[33;1mProtected by two-factor authentication")
             print("\033[33;1m[=] \033[37;1mProgram Finish")
-            retrieve_another_account = input("Hack another account (Press Y-Yes/N-No): ")
+            retrieve_another_account = input("\n\nHack another account (Press Y-Yes/N-No): ")
             if retrieve_another_account.lower() == 'y':
                 start()
             else:
